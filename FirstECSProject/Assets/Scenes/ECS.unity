@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8db593536d31c048a2b98b4222e1436, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Collisions: []
   _collider: {fileID: 64172581}
   _collisionActions:
   - {fileID: 64172578}
@@ -851,6 +852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8db593536d31c048a2b98b4222e1436, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Collisions: []
   _collider: {fileID: 508900334}
   _collisionActions:
   - {fileID: 508900331}
@@ -1235,6 +1237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8db593536d31c048a2b98b4222e1436, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Collisions: []
   _collider: {fileID: 554920926}
   _collisionActions:
   - {fileID: 554920922}
@@ -2609,7 +2612,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8422892626600285392, guid: 214e08cd5e5d74c458e2a81b7ec2c84c, type: 3}
       propertyPath: m_Name
-      value: DogPBR
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8422892626600285392, guid: 214e08cd5e5d74c458e2a81b7ec2c84c, type: 3}
       propertyPath: m_TagString
@@ -2647,6 +2650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf62632056ee4bfcbb7a493726db9ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inputActionAsset: {fileID: -944628639613478452, guid: 4e417bd51309de649bb1f0ecddb6cac3, type: 3}
   _speed: 10
   _spurt: 2
   _walkAnimationHash: Walking
@@ -3042,6 +3046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8db593536d31c048a2b98b4222e1436, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Collisions: []
   _collider: {fileID: 740368684}
   _collisionActions:
   - {fileID: 740368690}
@@ -3562,6 +3567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8db593536d31c048a2b98b4222e1436, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Collisions: []
   _collider: {fileID: 1231396326}
   _collisionActions:
   - {fileID: 1231396323}
@@ -3842,6 +3848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8db593536d31c048a2b98b4222e1436, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Collisions: []
   _collider: {fileID: 1329949111}
   _collisionActions:
   - {fileID: 1329949113}
@@ -3897,6 +3904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8db593536d31c048a2b98b4222e1436, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Collisions: []
   _collider: {fileID: 1407532468}
   _collisionActions:
   - {fileID: 1407532465}
@@ -4004,7 +4012,7 @@ GameObject:
   - component: {fileID: 1416242564}
   - component: {fileID: 1416242563}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -2,6 +2,7 @@ using System;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Kulikova
 {
@@ -43,6 +44,7 @@ namespace Kulikova
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
             dstManager.AddComponentData(entity, new InputData());
+
             dstManager.AddComponentData(entity, new MoveData
             {
                 Speed = _speed,

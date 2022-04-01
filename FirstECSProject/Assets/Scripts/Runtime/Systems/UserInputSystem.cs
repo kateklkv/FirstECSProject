@@ -1,5 +1,7 @@
+using System.Threading.Tasks;
 using Unity.Entities;
 using Unity.Mathematics;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +10,9 @@ namespace Kulikova
     public class UserInputSystem : ComponentSystem
     {
         private EntityQuery _inputQuery;
+
+        private InputActionAsset _inputActionAsset;
+        private InputActionMap _inputActionMap;
 
         private InputAction _moveAction;
         private InputAction _shootAction;
@@ -22,35 +27,31 @@ namespace Kulikova
         protected override void OnCreate()
         {
             _inputQuery = GetEntityQuery(ComponentType.ReadOnly<InputData>());
+            _inputActionAsset = (InputActionAsset)AssetDatabase.LoadAssetAtPath("Assets/Resources/PlayerInput.inputactions", typeof(InputActionAsset));
+            _inputActionMap = _inputActionAsset.FindActionMap("Gameplay");
         }
 
         protected override void OnStartRunning()
         {
-            _moveAction = new InputAction("move", binding: "<Gamepad>/rightStick");
-            _moveAction.AddCompositeBinding("Dpad")
-                .With("Up", "<Keyboard>/w")
-                .With("Down", "<Keyboard>/s")
-                .With("Left", "<Keyboard>/a")
-                .With("Right", "<Keyboard>/d");
-
+            _moveAction = _inputActionMap.FindAction("Movement");
             _moveAction.performed += context => { _moveInput = context.ReadValue<Vector2>(); };
             _moveAction.started += context => { _moveInput = context.ReadValue<Vector2>(); };
             _moveAction.canceled += context => { _moveInput = context.ReadValue<Vector2>(); };
             _moveAction.Enable();
 
-            _shootAction = new InputAction("shoot", binding: "<Keyboard>/space");
+            _shootAction = _inputActionMap.FindAction("Shoot");
             _shootAction.performed += context => { _shootInput = context.ReadValue<float>(); };
             _shootAction.started += context => { _shootInput = context.ReadValue<float>(); };
             _shootAction.canceled += context => { _shootInput = context.ReadValue<float>(); };
             _shootAction.Enable();
 
-            _shootAction = new InputAction("spurt", binding: "<Keyboard>/e");
-            _shootAction.performed += context => { _spurtInput = context.ReadValue<float>(); };
-            _shootAction.started += context => { _spurtInput = context.ReadValue<float>(); };
-            _shootAction.canceled += context => { _spurtInput = context.ReadValue<float>(); };
-            _shootAction.Enable();
+            _spurtAction = _inputActionMap.FindAction("Spurt");
+            _spurtAction.performed += context => { _spurtInput = context.ReadValue<float>(); };
+            _spurtAction.started += context => { _spurtInput = context.ReadValue<float>(); };
+            _spurtAction.canceled += context => { _spurtInput = context.ReadValue<float>(); };
+            _spurtAction.Enable();
 
-            _effectAction = new InputAction("effect", binding: "<Keyboard>/t");
+            _effectAction = _inputActionMap.FindAction("DissolveEffect");
             _effectAction.performed += context => { _effectInput = context.ReadValue<float>(); };
             _effectAction.started += context => { _effectInput = context.ReadValue<float>(); };
             _effectAction.canceled += context => { _effectInput = context.ReadValue<float>(); };
