@@ -61,7 +61,11 @@ namespace Kulikova
                 dstManager.AddComponentData(entity, new EffectData());
             }
 
-            if (_walkAnimationHash != String.Empty || _runAnimationHash != String.Empty || _attackAnimationHash != String.Empty || _getHitAnimationHash != String.Empty || _dieAnimationHash != String.Empty)
+            if (_walkAnimationHash != String.Empty 
+                || _runAnimationHash != String.Empty 
+                || _attackAnimationHash != String.Empty 
+                || _getHitAnimationHash != String.Empty 
+                || _dieAnimationHash != String.Empty)
             {
                 dstManager.AddComponentData(entity, new AnimatorData());
             }

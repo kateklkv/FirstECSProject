@@ -27,7 +27,8 @@ namespace Kulikova
         protected override void OnCreate()
         {
             _inputQuery = GetEntityQuery(ComponentType.ReadOnly<InputData>());
-            _inputActionAsset = (InputActionAsset)AssetDatabase.LoadAssetAtPath("Assets/Resources/PlayerInput.inputactions", typeof(InputActionAsset));
+            _inputActionAsset = (InputActionAsset)AssetDatabase
+                .LoadAssetAtPath("Assets/Resources/PlayerInput.inputactions", typeof(InputActionAsset));
             _inputActionMap = _inputActionAsset.FindActionMap("Gameplay");
         }
 

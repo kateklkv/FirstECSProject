@@ -19,7 +19,9 @@ namespace Kulikova
                 (Entity entity, Transform transform, ref InputData inputData, ref MoveData moveData) =>
                 {
                     var position = transform.position;
-                    position += new Vector3(inputData.Move.x * moveData.Speed * Time.DeltaTime, 0, inputData.Move.y * moveData.Speed * Time.DeltaTime);
+                    Debug.Log($"x = {inputData.Move.x}, y = {inputData.Move.y}");
+                    position += new Vector3(inputData.Move.x * moveData.Speed * Time.DeltaTime, 0,
+                        inputData.Move.y * moveData.Speed * Time.DeltaTime);
                     transform.position = position;
 
                 // OLD ROTATION
@@ -44,7 +46,8 @@ namespace Kulikova
                     if (inputData.Spurt > 0f)
                     {
                         Vector3 direct = Vector3.zero;
-                        direct = Vector3.RotateTowards(transform.forward, transform.forward * moveData.Spurt, 0.0f, 0.0f);
+                        direct = Vector3.RotateTowards(transform.forward, 
+                            transform.forward * moveData.Spurt, 0.0f, 0.0f);
                         transform.position += direct;
                     }
                 });
