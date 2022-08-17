@@ -1,5 +1,5 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Kulikova
@@ -25,12 +25,13 @@ namespace Kulikova
 
             if (_bullet != null)
             {
-                GameObject newBullet = Instantiate(_bullet, _gun.transform.position, Quaternion.Euler(90, 0, 0));
-                StartCoroutine(Co_Shot(newBullet));
+                /*GameObject newBullet = Instantiate(_bullet, _gun.transform.position
+                    , Quaternion.Euler(90, 0, 0));
+                StartCoroutine(Co_Shot(newBullet));*/
             }
             else
             {
-                Debug.LogError("[SHOOT ABILITY] No bullet prefab link!");
+                throw new Exception("[SHOOT ABILITY] No bullet prefab link!");
             }
         }
 

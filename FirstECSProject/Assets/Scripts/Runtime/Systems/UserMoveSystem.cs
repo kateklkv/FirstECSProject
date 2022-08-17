@@ -19,7 +19,6 @@ namespace Kulikova
                 (Entity entity, Transform transform, ref InputData inputData, ref MoveData moveData) =>
                 {
                     var position = transform.position;
-                    Debug.Log($"x = {inputData.Move.x}, y = {inputData.Move.y}");
                     position += new Vector3(inputData.Move.x * moveData.Speed * Time.DeltaTime, 0,
                         inputData.Move.y * moveData.Speed * Time.DeltaTime);
                     transform.position = position;

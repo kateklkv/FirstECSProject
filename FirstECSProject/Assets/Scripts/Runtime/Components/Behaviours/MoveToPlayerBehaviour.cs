@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 namespace Kulikova
 {
@@ -20,13 +19,14 @@ namespace Kulikova
         public void Behave()
         {
             if (_playerHealth != null) 
-                transform.position = Vector3.MoveTowards(transform.position, _playerHealth.transform.position, _moveSpeed / 100f);
+                transform.position = Vector3.MoveTowards(transform.position
+                    , _playerHealth.transform.position, _moveSpeed / 100f);
         }
 
         public float Evaluate()
         {
             if (_playerHealth == null) return 0;
-            return 1 / (this.gameObject.transform.position - _playerHealth.transform.position).magnitude * 1f;
+            return 1 / (transform.position - _playerHealth.transform.position).magnitude * 1f;
         }
     }
 }
