@@ -6,35 +6,40 @@ namespace Kulikova
 {
     public class CharacterData : MonoBehaviour
     {
+        public GameObject InventoryUIRoot;
+        
         [SerializeField]
-        private List<MonoBehaviour> levelUpActions;
+        private List<MonoBehaviour> _levelUpActions;
         
-        private int currentLevel = 1;
-        public int CurrentLevel => currentLevel;
+        [SerializeField]
+        private int _score = 0;
         
-        private int score = 0;
-        
-        private int scoreToNextLevel = 100;
+        private int _currentLevel = 1;
+        public int CurrentLevel => _currentLevel;
+
+        private int _scoreToNextLevel = 100;
+
+        private List<IInventoryItem> _inventoryItems;
 
         public void AddScore(int scoreToAdd)
         {
-            score += scoreToAdd;
+            _score += scoreToAdd;
 
-            if (scoreToAdd >= scoreToNextLevel)
+            if (scoreToAdd >= _scoreToNextLevel)
                 LevelUp();
         }
 
         private void LevelUp()
         {
-            currentLevel++;
-            scoreToNextLevel *= 2;
+            _currentLevel++;
+            _scoreToNextLevel *= 2;
 
-            if (levelUpActions != null)
+            if (_levelUpActions != null)
             {
-                foreach (var action in levelUpActions)
+                foreach (var action in _levelUpActions)
                 {
                     if (!(action is ILevelUp levelUp)) return;
-                    levelUp.LevelUp(this, currentLevel);
+                    levelUp.LevelUp(this, _currentLevel);
                 }
             }
             else

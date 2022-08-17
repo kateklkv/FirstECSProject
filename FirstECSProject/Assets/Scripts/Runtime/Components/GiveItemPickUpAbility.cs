@@ -4,9 +4,14 @@ using UnityEngine;
 
 namespace Kulikova
 {
-    public class GiveScorePickUpAbility : MonoBehaviour, IAbilityTarget, IConvertGameObjectToEntity
+    public class GiveItemPickUpAbility : MonoBehaviour, IAbilityTarget, IConvertGameObjectToEntity, IInventoryItem
     {
         public List<GameObject> Targets { get; set; }
+
+        [SerializeField] 
+        private GameObject uiItem;
+
+        public GameObject UIItem => uiItem;
 
         private Entity _entity;
         private EntityManager _dstManager;
@@ -18,7 +23,7 @@ namespace Kulikova
                 var character = target.GetComponent<CharacterData>();
                 if (character != null)
                 {
-                    character.AddScore(3);
+                    var item = GameObject.Instantiate(uiItem, character.InventoryUIRoot.transform);
                     Destroy(gameObject);
                     _dstManager.DestroyEntity(_entity);
                 }
