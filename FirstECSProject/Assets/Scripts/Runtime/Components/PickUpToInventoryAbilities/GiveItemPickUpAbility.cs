@@ -20,10 +20,15 @@ namespace Kulikova
         {
             foreach (var target in Targets)
             {
-                var character = target.GetComponent<CharacterData>();
+                var character = target.GetComponent<CharacterData>(); 
+                
                 if (character != null)
                 {
-                    var item = GameObject.Instantiate(uiItem, character.InventoryUIRoot.transform);
+                    var item = Instantiate(uiItem, character.InventoryUIRoot.transform);
+
+                    var ability = item.GetComponent<IAbilityTarget>();
+                    ability?.Targets.Add(target);
+                    
                     Destroy(gameObject);
                     _dstManager.DestroyEntity(_entity);
                 }
