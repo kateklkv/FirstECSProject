@@ -1,29 +1,37 @@
 using System;
 using System.Collections.Generic;
+using Kulikova.UI;
+using UnityEditor.Profiling;
 using UnityEngine;
+using Zenject;
 
 namespace Kulikova
 {
     public class CharacterData : MonoBehaviour
     {
-        public GameObject InventoryUIRoot;
+        public GameObject inventoryUIRoot;
         
         [SerializeField]
-        private List<MonoBehaviour> _levelUpActions;
+        private List<MonoBehaviour> levelUpActions;
         
         [SerializeField]
-        private int _score = 0;
+        private int score = 0;
         
         private int _currentLevel = 1;
         public int CurrentLevel => _currentLevel;
 
         private int _scoreToNextLevel = 100;
 
-        private List<IInventoryItem> _inventoryItems;
+        private CanvasViewModel _canvasViewModel;
+
+        [Inject]
+        private void Construct(CanvasViewModel canvasViewModel) => _canvasViewModel = canvasViewModel;
 
         public void AddScore(int scoreToAdd)
         {
-            _score += scoreToAdd;
+            score += scoreToAdd;
+            
+            if (_canvasViewModel != null) _canvasViewModel.Score = string.Format("Score: {0}", score.ToString());
 
             if (scoreToAdd >= _scoreToNextLevel)
                 LevelUp();
@@ -34,9 +42,9 @@ namespace Kulikova
             _currentLevel++;
             _scoreToNextLevel *= 2;
 
-            if (_levelUpActions != null)
+            if (levelUpActions != null)
             {
-                foreach (var action in _levelUpActions)
+                foreach (var action in levelUpActions)
                 {
                     if (!(action is ILevelUp levelUp)) return;
                     levelUp.LevelUp(this, _currentLevel);

@@ -3,13 +3,14 @@ using UnityEngine;
 
 namespace Kulikova.InventoryItemsAbilities
 {
-    public class HeartItemAbility : MonoBehaviour, IAbilityTarget, ICraftable
+    public class HealthItemAbility : MonoBehaviour, IAbilityTarget, ICraftable
     {
         public List<GameObject> Targets { get; set; } = new List<GameObject>();
-
-        public string Name => _name;
+        
+        [SerializeField] private int addedHealthCount;
 
         [SerializeField] private string _name;
+        public string Name => _name;
 
         public void Execute()
         {
@@ -18,7 +19,7 @@ namespace Kulikova.InventoryItemsAbilities
                 var character = target.GetComponent<PlayerHealth>();
 
                 if (character != null)
-                    character.Health += 12;
+                    character.Health += addedHealthCount;
             }
             //Destroy(gameObject);
         }

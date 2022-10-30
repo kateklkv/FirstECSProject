@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combinations:
   - sources:
-    - Heart
-    - Heart
+    - Health
+    - Health
     result: {fileID: 9080089821706230007, guid: 3fe2cf137bcca483dba25fb6b6cfbb1d, type: 3}

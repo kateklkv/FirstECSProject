@@ -9,8 +9,6 @@ namespace Kulikova.UI
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private const string PropertyArgsName = "Health";
-        
         private string _health = "Health: ";
         
         [Binding] 
@@ -23,7 +21,23 @@ namespace Kulikova.UI
 
                 _health = value;
                 
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyArgsName));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Health"));
+            }
+        }
+
+        private string _score = "Score: 0";
+        
+        [Binding] 
+        public string Score
+        {
+            get => _score;
+            set
+            {
+                if (_score == value) return;
+
+                _score = value;
+                
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Score"));
             }
         }
     }

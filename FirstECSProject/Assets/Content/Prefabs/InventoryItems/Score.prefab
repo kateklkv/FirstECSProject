@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6830660612249125069}
   - component: {fileID: 6335826274542345558}
   m_Layer: 5
-  m_Name: Star
+  m_Name: Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90,6 +90,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bf71c3147b4e24b499fcf13f550d54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addedScoreCount: 10
+  _name: Score
 --- !u!114 &6335826274542345558
 MonoBehaviour:
   m_ObjectHideFlags: 0

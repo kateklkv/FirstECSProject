@@ -24,7 +24,7 @@ namespace Kulikova
                 
                 if (character != null)
                 {
-                    var item = Instantiate(uiItem, character.InventoryUIRoot.transform);
+                    var item = Instantiate(uiItem, character.inventoryUIRoot.transform);
 
                     var ability = item.GetComponent<IAbilityTarget>();
                     ability?.Targets.Add(target);

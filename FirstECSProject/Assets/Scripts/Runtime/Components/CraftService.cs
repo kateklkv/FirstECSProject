@@ -3,6 +3,7 @@ using System.Linq;
 using Kulikova.InventoryItemsAbilities;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Kulikova
 {
@@ -11,10 +12,39 @@ namespace Kulikova
         public Transform UIItemsRoot;
         public CraftSettings CraftSettings;
 
+        public Button craftButton;
+
         private List<ICraftable> _craftablesItems = new List<ICraftable>();
         private List<GameObject> _selected = new List<GameObject>();
 
-        public void EnterCraftMode()
+        private CharacterData _characterData;
+        private bool _onClick;
+
+        [Inject]
+        private void Construct(CharacterData characterData)
+        {
+            _characterData = characterData;
+            craftButton.onClick.AddListener(CraftClick);
+        }
+
+        private void CraftClick()
+        {
+            _onClick = !_onClick;
+
+            if (_onClick)
+            {
+                craftButton.image.color = new Color(0.5f, 1f, 0.5f, 0.7f);
+                EnterCraftMode();
+            }
+            else
+            {
+                craftButton.image.color = new Color(1f, 0.5f, 0.5f, 0.7f);
+                _selected.Clear();
+                _craftablesItems.Clear();
+            }
+        }
+
+        private void EnterCraftMode()
         {
             _selected.Clear();
 
@@ -58,7 +88,13 @@ namespace Kulikova
                 {
                     foreach (var victim in _selected)
                         Destroy(victim);
+
                     var newItem = Instantiate(combination.result, UIItemsRoot);
+
+                    var craftable = newItem.GetComponent<IAbilityTarget>();
+
+                    if (craftable.Targets.Count == 0)
+                        craftable.Targets.Add(_characterData.gameObject);
                 }
             }
         }

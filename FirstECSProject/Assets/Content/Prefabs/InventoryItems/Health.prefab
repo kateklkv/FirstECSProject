@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6335826274542345558}
   - component: {fileID: 4937503418132201615}
   m_Layer: 5
-  m_Name: Heart
+  m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -147,4 +147,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1f0a9b3f4394a83aabc900dcdf65001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Heart
+  _name: Health
+  addedHealthCount: 10

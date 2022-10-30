@@ -3,18 +3,20 @@ using UnityEngine;
 
 namespace Kulikova.InventoryItemsAbilities
 {
-    public class StarItemAbility : MonoBehaviour, IAbilityTarget
+    public class ScoreItemAbility : MonoBehaviour, IAbilityTarget
     {
         public List<GameObject> Targets { get; set; } = new List<GameObject>();
+
+        [SerializeField] private int addedScoreCount;
 
         public void Execute()
         {
             foreach (var target in Targets)
             {
-                var character = target.GetComponent<PlayerHealth>();
+                var character = target.GetComponent<CharacterData>();
 
                 if (character != null)
-                    character.Health += 5;
+                    character.AddScore(addedScoreCount);
             }
             Destroy(gameObject);
         }

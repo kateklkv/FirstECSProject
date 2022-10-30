@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 9133261705685499868}
   - component: {fileID: 8198837300615223035}
   - component: {fileID: 7652187800932252614}
-  - component: {fileID: 6830660612249125069}
   - component: {fileID: 6335826274542345558}
+  - component: {fileID: 2628765393740428195}
   m_Layer: 5
-  m_Name: Question
+  m_Name: CraftScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,18 +78,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6830660612249125069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9080089821706230007}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10bf71c3147b4e24b499fcf13f550d54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6335826274542345558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,9 +122,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6830660612249125069}
-        m_TargetAssemblyTypeName: Kulikova.InventoryItemsAbilities.StarItemAbility,
-          Kulikova
+      - m_Target: {fileID: 2628765393740428195}
+        m_TargetAssemblyTypeName: Kulikova.InventoryItemsAbilities.ScoreItemAbility,
+          Assembly-CSharp
         m_MethodName: Execute
         m_Mode: 1
         m_Arguments:
@@ -147,3 +135,16 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2628765393740428195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9080089821706230007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10bf71c3147b4e24b499fcf13f550d54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  addedScoreCount: 30
