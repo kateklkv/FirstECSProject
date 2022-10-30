@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine.Networking;
 using System.IO;
+using Kulikova.UI;
+using Zenject;
 
 namespace Kulikova
 {
@@ -24,11 +26,16 @@ namespace Kulikova
             get => _health;
             set
             {
+                if (_health == value) return;
+                
                 _health = value;
+
+                if (_canvasViewModel != null) _canvasViewModel.Health = string.Format("Health: {0}", _health.ToString());
+                
                 if (_health <= 0)
                 {
                     _dstManager.DestroyEntity(_entity);
-                    Destroy(this.gameObject);
+                    Destroy(gameObject);
                 }
             }
         }
@@ -42,10 +49,15 @@ namespace Kulikova
         private string _localFilePath = "D:/Kate//Project/GameData.json";
         private string _localJsonResult;
 
+        private CanvasViewModel _canvasViewModel;
+
         [SerializeField]
         private ConfigurationSelector _playerData;
 
-        void Awake()
+        [Inject]
+        private void Construct(CanvasViewModel canvasViewModel) => _canvasViewModel = canvasViewModel;
+
+        private void Awake()
         {          
             if (_playerData == null)
                 _playerData = GetComponent<ConfigurationSelector>();
@@ -53,7 +65,7 @@ namespace Kulikova
             //SerializeGoodleDriveData();
         }
 
-        void Start()
+        private void Start()
         {
             // Async operation
             //AsyncReadLocalFile();
@@ -67,7 +79,7 @@ namespace Kulikova
             Health = _playerData.SelectedPlayerData.health;
         }
 
-        void OnDestroy()
+        private void OnDestroy()
         {
             /*_gameData.name = gameObject.name;
             _gameData.health = _health;
@@ -117,7 +129,7 @@ namespace Kulikova
             Health = _gameData.health;
         }
 
-        void DeserializeGoogleDriveData()
+        private void DeserializeGoogleDriveData()
         {
             string jsonString = JsonUtility.ToJson(_gameData);
             GoogleDriveTools.Upload(_jsonFileId, jsonString, OnDoneUpload);
